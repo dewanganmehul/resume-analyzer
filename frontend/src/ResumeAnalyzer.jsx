@@ -21,7 +21,7 @@ function ResumeAnalyzer() {
     formData.append("jobDescription", job);
 
     try {
-      const res = await axios.post("http://localhost:5000/analyze", formData, {
+      const res = await axios.post("https://resume-analyzer-iz5a.onrender.com", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setResult(res.data);
