@@ -21,9 +21,13 @@ function ResumeAnalyzer() {
     formData.append("jobDescription", job);
 
     try {
-      const res = await axios.post("https://resume-analyzer-iz5a.onrender.com", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await axios.post(
+        "https://resume-analyzer-iz5a.onrender.com/analyze",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       setResult(res.data);
     } catch (err) {
       console.error(err);
@@ -39,8 +43,6 @@ function ResumeAnalyzer() {
         <h1 className="text-4xl font-extrabold text-center mb-8 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent drop-shadow">
           Resume Analyzer
         </h1>
-
-        {/* Upload Section */}
         <div className="mb-4">
           <label className="block mb-2 font-medium text-gray-700">
             Upload Resume (PDF)
@@ -52,8 +54,6 @@ function ResumeAnalyzer() {
             className="block w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
-
-        {/* Job Description */}
         <div className="mb-4">
           <label className="block mb-2 font-medium text-gray-700">
             Job Description
@@ -65,8 +65,6 @@ function ResumeAnalyzer() {
             onChange={(e) => setJob(e.target.value)}
           />
         </div>
-
-        {/* Button */}
         <button
           onClick={handleSubmit}
           disabled={loading}
@@ -77,11 +75,8 @@ function ResumeAnalyzer() {
         >
           {loading ? "Analyzing..." : "Analyze Resume"}
         </button>
-
-        {/* Results */}
         {result && (
           <div className="mt-10 space-y-8 animate-fadeIn">
-            {/* Match Score */}
             <div className="flex flex-col items-center">
               <h2 className="text-2xl font-semibold mb-4 text-gray-800">
                 Match Score
@@ -98,8 +93,6 @@ function ResumeAnalyzer() {
                 />
               </div>
             </div>
-
-            {/* Suggestions */}
             <div className="bg-blue-50 p-6 rounded-xl shadow-inner">
               <h2 className="text-xl font-bold mb-3 text-blue-700">
                 Suggestions
@@ -110,8 +103,6 @@ function ResumeAnalyzer() {
                 ))}
               </ul>
             </div>
-
-            {/* Missing Skills */}
             <div className="bg-red-50 p-6 rounded-xl shadow-inner">
               <h2 className="text-xl font-bold mb-3 text-red-700">
                 Missing Skills
